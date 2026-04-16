@@ -1,39 +1,52 @@
-export const LimiterError = <ErrorCodes extends Record<string, string>>(codes: ErrorCodes) => {
-    class BaseError {
-        public constructor(
-            public readonly code: ErrorCodes[keyof ErrorCodes],
-            public readonly details?: any,
-        ) {}
+type StringRecord = Record<string, string>;
 
-        static throw = (key: keyof ErrorCodes, details?: any) => {
-            throw new BaseError(codes[key], details)
-        }
+export const LimiterError = <
+  ErrorCodes extends StringRecord,
+  BaseDetails extends StringRecord = {},
+>(
+  codes: ErrorCodes,
+) => {
+  class BaseError {
+    public constructor(
+      public readonly code: ErrorCodes[keyof ErrorCodes],
+      public readonly details: BaseDetails,
+    ) {}
 
-        static checkInstance = (target: unknown, key?: keyof ErrorCodes): target is BaseError => {
-            if (!target) {
-                return false
-            }
-            if (typeof target !== 'object') {
-                return false
-            }
-            
-            if (!('code' in target)) {
-                return false
-            }
+    static throw = <AdditionalDetails extends StringRecord = {}>(
+      key: keyof ErrorCodes,
+      details: BaseDetails & AdditionalDetails,
+    ) => {
+      throw new BaseError(codes[key], details);
+    };
 
-            if (typeof target.code !== 'string') {
-                return false
-            }
+    static checkInstance = (
+      target: unknown,
+      key?: keyof ErrorCodes,
+    ): target is BaseError => {
+      if (!target) {
+        return false;
+      }
+      if (typeof target !== 'object') {
+        return false;
+      }
 
-            const { code } = target
-            const errorCodes = Object.values(codes)
-            if (!key) {
-                return errorCodes.some(x => x === code)
-            }
+      if (!('code' in target)) {
+        return false;
+      }
 
-            return codes[key] === code
-        }
-    }
+      if (typeof target.code !== 'string') {
+        return false;
+      }
 
-    return BaseError;
-}
+      const { code } = target;
+      const errorCodes = Object.values(codes);
+      if (!key) {
+        return errorCodes.some((x) => x === code);
+      }
+
+      return codes[key] === code;
+    };
+  }
+
+  return BaseError;
+};
