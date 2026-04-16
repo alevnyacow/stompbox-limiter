@@ -1,23 +1,34 @@
-# Rslib project
+# Limiter
 
-## Setup
+Framework-agnostic plug-n-play error library.
 
-Install the dependencies:
+## Example
 
-```bash
-npm install
-```
+```ts
+import { Limiter } from '@stompbox/limiter'
 
-## Get started
+const MathError = Limiter({
+    DIVIDED_BY_ZERO: 'MATH_01',
+    SQUARE_ROOT_OF_NEGATIVE_NUMBER: 'MATH_02'
+})
 
-Build the library:
+const divide = (a: number, b: number) => {
+    if (!b) {
+        const errorDetails = { firstOperand: a.toString() }
+        throw new MathError('DIVIDED_BY_ZERO', errorDetails)
+    }
 
-```bash
-npm run build
-```
+    return a / b
+}
 
-Build the library in watch mode:
-
-```bash
-npm run dev
+const test = (a: number, b: number) => {
+    try {
+        const result = divide(a, b)
+    }
+    catch (e: unknown) {
+        if (MathError.isInstance(e, 'DIVIDED_BY_ZERO')) {
+            console.error('Divided by zero!')
+        }
+    }
+}
 ```
