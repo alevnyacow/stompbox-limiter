@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/alevnyacow/stompbox-limiter/compare/v1.1.0...v1.1.1) (2026-04-16)
+
+
+### Bug Fixes
+
+* added vitest and mock test ([9992837](https://github.com/alevnyacow/stompbox-limiter/commit/9992837f0c2ec0b38c020b9830268c936b3d2e30))
+
 # [1.1.0](https://github.com/alevnyacow/stompbox-limiter/compare/v1.0.0...v1.1.0) (2026-04-16)
 
 
