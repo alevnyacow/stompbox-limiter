@@ -1,28 +1,25 @@
 type StringRecord = Record<string, string>;
 
-export const LimiterError = <
-  ErrorCodes extends StringRecord,
-  BaseDetails extends StringRecord = {},
+export const Limiter = <
+  ErrorCodes extends StringRecord
 >(
   codes: ErrorCodes,
 ) => {
-  class BaseError {
-    public constructor(
-      public readonly code: ErrorCodes[keyof ErrorCodes],
-      public readonly details: BaseDetails,
-    ) {}
+  class Base<Details extends StringRecord | undefined = undefined> {
+    public readonly timestamp = Date.now()
+    public readonly code: ErrorCodes[keyof ErrorCodes]
 
-    static throw = <AdditionalDetails extends StringRecord = {}>(
-      key: keyof ErrorCodes,
-      details: BaseDetails & AdditionalDetails,
-    ) => {
-      throw new BaseError(codes[key], details);
-    };
+    public constructor(
+        key: keyof ErrorCodes,
+        public readonly details?: Details,
+    ) {
+        this.code = codes[key]
+    }
 
     static checkInstance = (
       target: unknown,
       key?: keyof ErrorCodes,
-    ): target is BaseError => {
+    ): target is Base => {
       if (!target) {
         return false;
       }
@@ -48,5 +45,5 @@ export const LimiterError = <
     };
   }
 
-  return BaseError;
+  return Base;
 };
