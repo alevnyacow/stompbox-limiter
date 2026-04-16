@@ -1,3 +1,10 @@
+## [4.1.1](https://github.com/alevnyacow/stompbox-limiter/compare/v4.1.0...v4.1.1) (2026-04-16)
+
+
+### Bug Fixes
+
+* added license ([c42dde8](https://github.com/alevnyacow/stompbox-limiter/commit/c42dde85ba4f05a69b0ec55f4d6d69409efceb46))
+
 # [4.1.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.0.1...v4.1.0) (2026-04-16)
 
 
