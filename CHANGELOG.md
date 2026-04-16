@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/alevnyacow/stompbox-limiter/compare/v3.1.0...v3.1.1) (2026-04-16)
+
+
+### Bug Fixes
+
+* added simple readme ([75337b2](https://github.com/alevnyacow/stompbox-limiter/commit/75337b2743b543af1d3176f71a22677eeca8a057))
+
 # [3.1.0](https://github.com/alevnyacow/stompbox-limiter/compare/v3.0.0...v3.1.0) (2026-04-16)
 
 
