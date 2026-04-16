@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/alevnyacow/stompbox-limiter/compare/v1.1.1...v2.0.0) (2026-04-16)
+
+
+### Bug Fixes
+
+* instance-time details, timestamp ([f5dbc5e](https://github.com/alevnyacow/stompbox-limiter/commit/f5dbc5e8cbc8efcae2e7dd76c8046b8502e984cd))
+
+
+### BREAKING CHANGES
+
+* new contract
+
 ## [1.1.1](https://github.com/alevnyacow/stompbox-limiter/compare/v1.1.0...v1.1.1) (2026-04-16)
 
 
