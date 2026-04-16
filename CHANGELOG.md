@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/alevnyacow/stompbox-limiter/compare/v3.0.0...v3.1.0) (2026-04-16)
+
+
+### Features
+
+* details are always requested ([97318b6](https://github.com/alevnyacow/stompbox-limiter/commit/97318b6b745e4f3121b429bc6696ef980a09d02f))
+
 # [3.0.0](https://github.com/alevnyacow/stompbox-limiter/compare/v2.0.0...v3.0.0) (2026-04-16)
 
 
