@@ -1,6 +1,10 @@
 {
   "name": "@stompbox/limiter",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alevnyacow/stompbox-limiter.git"
+  },
   "type": "module",
   "exports": {
     ".": {
