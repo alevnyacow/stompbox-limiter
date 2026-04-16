@@ -16,7 +16,7 @@ export const Limiter = <
         this.code = codes[key]
     }
 
-    static checkInstance = (
+    static isInstance = (
       target: unknown,
       key?: keyof ErrorCodes,
     ): target is Base => {
