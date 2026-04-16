@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/alevnyacow/stompbox-limiter/compare/v3.1.2...v4.0.0) (2026-04-16)
+
+
+### Features
+
+* LimiterError extending default error ([1e38a7e](https://github.com/alevnyacow/stompbox-limiter/commit/1e38a7e8f56035c1aeec9376866262e910069b4a))
+
+
+### BREAKING CHANGES
+
+* new contracts
+
 ## [3.1.2](https://github.com/alevnyacow/stompbox-limiter/compare/v3.1.1...v3.1.2) (2026-04-16)
 
 
