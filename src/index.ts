@@ -1,49 +1,23 @@
 type StringRecord = Record<string, string>;
 
-export const Limiter = <
-  ErrorCodes extends StringRecord
->(
-  codes: ErrorCodes,
-) => {
-  class Base<Details extends StringRecord> {
-    public readonly timestamp = Date.now()
-    public readonly code: ErrorCodes[keyof ErrorCodes]
+type LimiterErrorClass<ErrorCodes extends StringRecord> = new (
+  key: keyof ErrorCodes,
+  details?: StringRecord
+) => Error & {
+  checkKey(code: keyof ErrorCodes): boolean;
+};
 
-    public constructor(
-        key: keyof ErrorCodes,
-        public readonly details: Details,
-    ) {
-        this.code = codes[key]
+export const Limiter = <ErrorCodes extends StringRecord>(
+  codes: ErrorCodes,
+): LimiterErrorClass<ErrorCodes> => {
+  return class Base extends Error {
+    constructor(private readonly key: keyof ErrorCodes, details?: StringRecord) {
+      super(details ? JSON.stringify(details) : undefined);
+      this.name = codes[key];
     }
 
-    static isInstance = (
-      target: unknown,
-      key?: keyof ErrorCodes,
-    ): target is Base<any> => {
-      if (!target) {
-        return false;
-      }
-      if (typeof target !== 'object') {
-        return false;
-      }
-
-      if (!('code' in target)) {
-        return false;
-      }
-
-      if (typeof target.code !== 'string') {
-        return false;
-      }
-
-      const { code } = target;
-      const errorCodes = Object.values(codes);
-      if (!key) {
-        return errorCodes.some((x) => x === code);
-      }
-
-      return codes[key] === code;
+    public checkKey = (code: keyof ErrorCodes) => {
+      return this.key === code;
     };
-  }
-
-  return Base;
+  };
 };
