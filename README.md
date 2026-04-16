@@ -14,7 +14,7 @@ const MathError = Limiter({
 
 const divide = (a: number, b: number) => {
     if (!b) {
-        // error code is strictly typed
+        // strictly-typed, with autocomplete
         throw new MathError('DIVIDED_BY_ZERO')
     }
 
@@ -41,13 +41,13 @@ const test = (a: number, b: number) => {
         console.log("Second sqrt: " + sqrt(b))
     }
     catch (e: unknown) {
-        if (e instanceof MathError) {
-            if (e.checkKey('DIVIDED_BY_ZERO')) {
-                console.error('Divided by zero!')
-            }
-            if (e.checkKey('SQUARE_ROOT_OF_NEGATIVE')) {
-                console.error('Square root of negative!')
-            }
+        // also strictly-typed, with autocomplete
+        if (MathError.is(e, 'DIVIDED_BY_ZERO')) {
+            console.error('Divided by zero!')
+        }
+        if (MathError.is(e, 'SQUARE_ROOT_OF_NEGATIVE')) {
+            console.error('Square root of negative!')
+            console.error(e.details)
         }
         console.error(e)
     }

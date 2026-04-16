@@ -1,23 +1,47 @@
 type StringRecord = Record<string, string>;
 
-type LimiterErrorClass<ErrorCodes extends StringRecord> = new (
-  key: keyof ErrorCodes,
-  details?: StringRecord
-) => Error & {
-  checkKey(code: keyof ErrorCodes): boolean;
+type LimiterInstance<ErrorCodes extends StringRecord> = Error & {
+  code: keyof ErrorCodes;
+  details?: StringRecord;
 };
+
+type LimiterErrorStatic<ErrorCodes extends StringRecord> = {
+  is(
+    target: unknown,
+    code?: keyof ErrorCodes
+  ): target is LimiterInstance<ErrorCodes>;
+};
+
+type LimiterErrorClass<ErrorCodes extends StringRecord> =
+  (new (
+    code: keyof ErrorCodes,
+    details?: StringRecord
+  ) => LimiterInstance<ErrorCodes>)
+  & LimiterErrorStatic<ErrorCodes>;
 
 export const Limiter = <ErrorCodes extends StringRecord>(
   codes: ErrorCodes,
 ): LimiterErrorClass<ErrorCodes> => {
   return class Base extends Error {
-    constructor(private readonly key: keyof ErrorCodes, details?: StringRecord) {
-      super(details ? JSON.stringify(details) : undefined);
-      this.name = codes[key];
+    constructor(public readonly code: keyof ErrorCodes, public readonly details?: StringRecord) {
+      super(details ? Object.entries(details).map(([key, value]) => `${key}: ${value}`).join(', ') : undefined);
+      this.name = codes[code];
     }
 
-    public checkKey = (code: keyof ErrorCodes) => {
-      return this.key === code;
-    };
+    public static is = (target: unknown, code?: keyof ErrorCodes): target is LimiterInstance<ErrorCodes> => {
+        if (!target || typeof target !== 'object') {
+            return false;
+        }
+        if (!('code' in target)) {
+            return false;
+        }
+        if (typeof target.code !== 'string') {
+            return false;
+        }
+        if (!code) {
+            return Object.keys(codes).includes(target.code)
+        }
+        return target.code === code
+    }
   };
 };
