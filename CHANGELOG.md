@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.0.1...v4.1.0) (2026-04-16)
+
+
+### Features
+
+* simplified checks ([bed2ca8](https://github.com/alevnyacow/stompbox-limiter/commit/bed2ca88f4085d21e047087fd1d8a4a03f2ef718))
+
 ## [4.0.1](https://github.com/alevnyacow/stompbox-limiter/compare/v4.0.0...v4.0.1) (2026-04-16)
 
 
