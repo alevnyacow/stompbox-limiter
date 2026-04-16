@@ -5,13 +5,13 @@ export const Limiter = <
 >(
   codes: ErrorCodes,
 ) => {
-  class Base<Details extends StringRecord | undefined = undefined> {
+  class Base<Details extends StringRecord> {
     public readonly timestamp = Date.now()
     public readonly code: ErrorCodes[keyof ErrorCodes]
 
     public constructor(
         key: keyof ErrorCodes,
-        public readonly details?: Details,
+        public readonly details: Details,
     ) {
         this.code = codes[key]
     }
@@ -19,7 +19,7 @@ export const Limiter = <
     static isInstance = (
       target: unknown,
       key?: keyof ErrorCodes,
-    ): target is Base => {
+    ): target is Base<any> => {
       if (!target) {
         return false;
       }
