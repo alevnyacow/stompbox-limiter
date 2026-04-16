@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/alevnyacow/stompbox-limiter/compare/v2.0.0...v3.0.0) (2026-04-16)
+
+
+### Bug Fixes
+
+* renamed method ([48de3c1](https://github.com/alevnyacow/stompbox-limiter/commit/48de3c1dc58042d8beef5398996fe33387e80f92))
+
+
+### BREAKING CHANGES
+
+* renamed method `checkInstance` -> `isInstance`
+
 # [2.0.0](https://github.com/alevnyacow/stompbox-limiter/compare/v1.1.1...v2.0.0) (2026-04-16)
 
 
