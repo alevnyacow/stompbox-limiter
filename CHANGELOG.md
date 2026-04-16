@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/alevnyacow/stompbox-limiter/compare/v1.0.0...v1.1.0) (2026-04-16)
+
+
+### Features
+
+* added Details in generics ([f1498e0](https://github.com/alevnyacow/stompbox-limiter/commit/f1498e01a41b49b25ba128f7b19dda6ab5552a6b))
+
 # 1.0.0 (2026-04-16)
 
 
