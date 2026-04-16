@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/alevnyacow/stompbox-limiter/compare/v4.0.0...v4.0.1) (2026-04-16)
+
+
+### Bug Fixes
+
+* refactored readme ([011fc84](https://github.com/alevnyacow/stompbox-limiter/commit/011fc847628e5c34a67cb2a09b20a0c92947dedb))
+
 # [4.0.0](https://github.com/alevnyacow/stompbox-limiter/compare/v3.1.2...v4.0.0) (2026-04-16)
 
 
