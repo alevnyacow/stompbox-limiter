@@ -1,3 +1,10 @@
+# [4.3.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.2.2...v4.3.0) (2026-04-17)
+
+
+### Features
+
+* correct way of initializing error classes in readme ([0793197](https://github.com/alevnyacow/stompbox-limiter/commit/0793197fba96487c6a6afba74a978032c3af827b))
+
 ## [4.2.2](https://github.com/alevnyacow/stompbox-limiter/compare/v4.2.1...v4.2.2) (2026-04-17)
 
 
