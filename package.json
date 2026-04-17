@@ -1,7 +1,12 @@
 {
   "name": "@stompbox/limiter",
-  "version": "4.1.1",
-  "keywords": ["error", "errors", "exception", "exceptions"],
+  "version": "4.1.2",
+  "keywords": [
+    "error",
+    "errors",
+    "exception",
+    "exceptions"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
