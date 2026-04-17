@@ -1,8 +1,9 @@
 type StringRecord = Record<string, string>;
+type PlainPrimitivesObject = Record<string, string | number | boolean>;
 
 type LimiterInstance<ErrorCodes extends StringRecord> = Error & {
   code: keyof ErrorCodes;
-  details?: StringRecord;
+  details?: PlainPrimitivesObject;
 };
 
 type LimiterErrorStatic<ErrorCodes extends StringRecord> = {
@@ -23,7 +24,7 @@ export const Limiter = <ErrorCodes extends StringRecord>(
   codes: ErrorCodes,
 ): LimiterErrorClass<ErrorCodes> => {
   return class Base extends Error {
-    constructor(public readonly code: keyof ErrorCodes, public readonly details?: StringRecord) {
+    constructor(public readonly code: keyof ErrorCodes, public readonly details?: PlainPrimitivesObject) {
       super(details ? Object.entries(details).map(([key, value]) => `${key}: ${value}`).join(', ') : undefined);
       this.name = codes[code];
     }

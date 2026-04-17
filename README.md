@@ -21,17 +21,16 @@ const divide = (a: number, b: number) => {
     return a / b
 }
 
-const sqrt = (a: number) => {
-    if (a < 0) {
+const sqrt = (num: number) => {
+    if (num < 0) {
         throw new MathError(
             'SQUARE_ROOT_OF_NEGATIVE',
-            // any details can be provided
-            // in format of Record<string, string>
-            { num: a.toString() }
+            // details
+            { num }
         )
     }
 
-    return Math.sqrt(a)
+    return Math.sqrt(num)
 }
 
 const test = (a: number, b: number) => {
