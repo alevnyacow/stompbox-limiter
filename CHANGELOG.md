@@ -1,3 +1,10 @@
+# [4.2.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.1.2...v4.2.0) (2026-04-17)
+
+
+### Features
+
+* enriched details contract to work with all primitives ([477a7ce](https://github.com/alevnyacow/stompbox-limiter/commit/477a7cee0656247b33bcb7b58e49cf3479ea5485))
+
 ## [4.1.2](https://github.com/alevnyacow/stompbox-limiter/compare/v4.1.1...v4.1.2) (2026-04-17)
 
 
