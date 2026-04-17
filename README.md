@@ -7,10 +7,10 @@ Framework-agnostic plug-and-play custom errors.
 ```ts
 import { Limiter } from '@stompbox/limiter'
 
-const MathError = Limiter({
+class MathError extends Limiter({
     DIVIDED_BY_ZERO: 'MATH_01',
     SQUARE_ROOT_OF_NEGATIVE: 'MATH_02'
-})
+}) {}
 
 const divide = (a: number, b: number) => {
     if (!b) {
