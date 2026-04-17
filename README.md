@@ -1,6 +1,6 @@
 # Limiter
 
-Framework-agnostic plug-n-play error library.
+Framework-agnostic plug-and-play custom errors.
 
 ## Example
 

@@ -1,5 +1,6 @@
 {
   "name": "@stompbox/limiter",
+  "description": "Framework-agnostic plug-and-play custom errors.",
   "version": "4.2.1",
   "keywords": [
     "error",
