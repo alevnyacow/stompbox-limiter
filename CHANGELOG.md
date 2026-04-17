@@ -1,3 +1,10 @@
+## [4.2.1](https://github.com/alevnyacow/stompbox-limiter/compare/v4.2.0...v4.2.1) (2026-04-17)
+
+
+### Bug Fixes
+
+* correct ts types, new stringify format ([920aba7](https://github.com/alevnyacow/stompbox-limiter/commit/920aba7f28d428d04045238c57e4f27b773685cd))
+
 # [4.2.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.1.2...v4.2.0) (2026-04-17)
 
 
