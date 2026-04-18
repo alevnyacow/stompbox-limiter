@@ -9,7 +9,7 @@
     "moduleResolution": "bundler",
     "useDefineForClassFields": true,
     "allowImportingTsExtensions": true,
-    "rootDir": "src"
+    "rootDir": "src",
   },
   "include": ["src"]
 }
