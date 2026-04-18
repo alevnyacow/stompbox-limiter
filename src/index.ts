@@ -50,7 +50,7 @@ export const Limiter = <ErrorCodes extends StringRecord>(
 export const enrichDetails = {
   withSource: (source?: string, strategy: 'skip empty source' | 'turn empty source to "unknown source"' = 'skip empty source') => (details?: PlainPrimitivesObject): PlainPrimitivesObject => {
     if (!source) {
-      const sourcePart = strategy === 'skip empty source' ? {} : { source: 'unknown source' }
+      const sourcePart = strategy === 'skip empty source' ? {} : { source: 'unknown source' } as {}
       const detailsPart = details || {}
       return { ...sourcePart, ...detailsPart }
     } 
