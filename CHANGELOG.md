@@ -1,3 +1,10 @@
+# [4.5.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.4.0...v4.5.0) (2026-04-18)
+
+
+### Features
+
+* details enriching API ([c0c4c89](https://github.com/alevnyacow/stompbox-limiter/commit/c0c4c8928ec9ada829cf5946c7f62c29e2dfdef9))
+
 # [4.4.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.3.0...v4.4.0) (2026-04-18)
 
 
