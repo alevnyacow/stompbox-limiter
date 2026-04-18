@@ -46,3 +46,22 @@ export const Limiter = <ErrorCodes extends StringRecord>(
     }
   };
 };
+
+export const enrichDetails = {
+  withSource: (source: string) => (details?: PlainPrimitivesObject): PlainPrimitivesObject => {
+    if (!details) {
+      return { source }
+    }
+
+    return { source, ...details }
+  },
+  withTimespamp: (details?: PlainPrimitivesObject): PlainPrimitivesObject => {
+    const timestamp = Date.now()
+
+    if (!details) {
+      return { timestamp }
+    }
+
+    return { ...details, timestamp }
+  }
+}
