@@ -1,3 +1,10 @@
+# [4.4.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.3.0...v4.4.0) (2026-04-18)
+
+
+### Features
+
+* added zod entrypoint ([2b324e3](https://github.com/alevnyacow/stompbox-limiter/commit/2b324e337ba8604e31b06dd2dfddc3d74cf7cb6c))
+
 # [4.3.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.2.2...v4.3.0) (2026-04-17)
 
 
