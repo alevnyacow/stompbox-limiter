@@ -1,3 +1,10 @@
+# [4.6.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.5.0...v4.6.0) (2026-04-18)
+
+
+### Features
+
+* added multiple strategies for `enrichDetails.withSource` ([5718c27](https://github.com/alevnyacow/stompbox-limiter/commit/5718c274bdc1f5a93fbcdec657d7206077f58a27))
+
 # [4.5.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.4.0...v4.5.0) (2026-04-18)
 
 
