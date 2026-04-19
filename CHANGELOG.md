@@ -1,3 +1,10 @@
+# [4.7.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.6.1...v4.7.0) (2026-04-19)
+
+
+### Features
+
+* isLimiterError check ([cf9e4f7](https://github.com/alevnyacow/stompbox-limiter/commit/cf9e4f79b8c537f4fc4ed176c43290be77526b40))
+
 ## [4.6.1](https://github.com/alevnyacow/stompbox-limiter/compare/v4.6.0...v4.6.1) (2026-04-19)
 
 
