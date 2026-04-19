@@ -1,3 +1,10 @@
+## [4.6.1](https://github.com/alevnyacow/stompbox-limiter/compare/v4.6.0...v4.6.1) (2026-04-19)
+
+
+### Bug Fixes
+
+* zod detais ([b134f13](https://github.com/alevnyacow/stompbox-limiter/commit/b134f13b05e9fb1b9cc01c91389fecd5001c689e))
+
 # [4.6.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.5.0...v4.6.0) (2026-04-18)
 
 
