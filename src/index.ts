@@ -24,8 +24,8 @@ export const Limiter = <ErrorCodes extends StringRecord>(
   codes: ErrorCodes,
 ): LimiterErrorClass<ErrorCodes> => {
   return class Base extends Error {
-    constructor(public readonly code: keyof ErrorCodes, public readonly details?: PlainPrimitivesObject) {
-      super(details ? Object.entries(details).map(([key, value]) => `${key} - ${value}`).join(', ') : undefined);
+    constructor(public readonly code: keyof ErrorCodes, public readonly details: PlainPrimitivesObject = {}) {
+      super(details && Object.keys(details).length ? Object.entries(details).map(([key, value]) => `${key} - ${value}`).join(', ') : undefined);
       this.name = codes[code];
     }
 
@@ -46,6 +46,30 @@ export const Limiter = <ErrorCodes extends StringRecord>(
     }
   };
 };
+
+export const isLimiterError = (x: unknown): boolean => {
+  if (!(x instanceof Error)) {
+    return false;
+  }
+
+  if (!('code' in x)) {
+    return false
+  }
+
+  if (typeof x.code !== 'string') {
+    return false
+  }
+
+  if (!('details' in x)) {
+    return false
+  }
+
+  if (!x.details || typeof x.details !== 'object') {
+    return false
+  }
+
+  return true
+}
 
 export const enrichDetails = {
   withSource: (source?: string, strategy: 'skip empty source' | 'turn empty source to "unknown source"' = 'skip empty source') => (details?: PlainPrimitivesObject): PlainPrimitivesObject => {
