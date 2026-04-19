@@ -6,8 +6,8 @@ export const zodErrorDetails = (error: ZodError): Record<string, string> => {
         return `${x.message}${path}`
     })
 
-    const fields = Object.fromEntries(Object.entries(fieldErrors).map(([key, errors]) => [key, errors!.join(', ')]))
-    const general = formErrors.length ? { generalErrors: formErrors.join(', ') } : {} as ({ generalErrors: string[] } | {})
+    const fields = Object.fromEntries(Object.entries(fieldErrors).map(([key, errors]) => [`${key}_field_errors`, errors!.join(', ')]))
+    const general = formErrors.length ? { general_schema_errors: formErrors.join(', ') } : {} as ({ generalErrors: string[] } | {})
 
     return { ...general, ...fields }
 }
