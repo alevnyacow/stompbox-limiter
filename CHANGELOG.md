@@ -1,3 +1,10 @@
+# [4.8.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.7.0...v4.8.0) (2026-04-20)
+
+
+### Features
+
+* enrichDetails.fromUnknownData ([3608ba7](https://github.com/alevnyacow/stompbox-limiter/commit/3608ba7f61a38c8911dede599494fbe194edddee))
+
 # [4.7.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.6.1...v4.7.0) (2026-04-19)
 
 
