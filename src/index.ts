@@ -92,12 +92,15 @@ export const enrichDetails = {
     if (typeof source === 'number' || typeof source === 'string' || typeof source === 'boolean') {
       return { ...detailsPart, additionalInfo: source }
     }
-    if (typeof source === 'object') {
+    if (typeof source === 'object' && source) {
       if (isLimiterError(source)) {
         return { ...detailsPart, ...source.details }
       }
       if (source instanceof Error) {
-        return { ...detailsPart, errorMessage: source.message, errorName: source.name, errorStack: source.stack }
+        if (source.stack) {
+          return { ...detailsPart, errorMessage: source.message, errorName: source.name, errorStack: source.stack }
+        }
+        return { ...detailsPart, errorMessage: source.message, errorName: source.name }
       }
       for (const sourceEntry of Object.entries(source)) {
         const [key, value] = sourceEntry
@@ -116,7 +119,7 @@ export const enrichDetails = {
           detailsPart = { ...detailsPart, ...value.details }
         }
       }
-      return detailsPart
     }
+    return detailsPart
   }
 }
