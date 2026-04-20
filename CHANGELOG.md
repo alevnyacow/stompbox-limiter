@@ -1,3 +1,10 @@
+## [4.8.1](https://github.com/alevnyacow/stompbox-limiter/compare/v4.8.0...v4.8.1) (2026-04-20)
+
+
+### Bug Fixes
+
+* exported LimiterError and LimiterErrorWithUnknownCodes ([0b4c345](https://github.com/alevnyacow/stompbox-limiter/commit/0b4c34501ad1a16a92ca95b0f20ebe99f3602cef))
+
 # [4.8.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.7.0...v4.8.0) (2026-04-20)
 
 
