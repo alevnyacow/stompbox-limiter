@@ -20,34 +20,7 @@ type LimiterErrorClass<ErrorCodes extends StringRecord> =
   ) => LimiterInstance<ErrorCodes>)
   & LimiterErrorStatic<ErrorCodes>;
 
-export const Limiter = <ErrorCodes extends StringRecord>(
-  codes: ErrorCodes,
-): LimiterErrorClass<ErrorCodes> => {
-  return class Base extends Error {
-    constructor(public readonly code: keyof ErrorCodes, public readonly details: PlainPrimitivesObject = {}) {
-      super(details && Object.keys(details).length ? Object.entries(details).map(([key, value]) => `${key} - ${value}`).join(', ') : undefined);
-      this.name = codes[code];
-    }
-
-    public static is = (target: unknown, code?: keyof ErrorCodes): target is LimiterInstance<ErrorCodes> => {
-        if (!target || typeof target !== 'object') {
-            return false;
-        }
-        if (!('code' in target)) {
-            return false;
-        }
-        if (typeof target.code !== 'string') {
-            return false;
-        }
-        if (!code) {
-            return Object.keys(codes).includes(target.code)
-        }
-        return target.code === code
-    }
-  };
-};
-
-export const isLimiterError = (x: unknown): boolean => {
+export const isLimiterError = (x: unknown): x is LimiterInstance<{}> => {
   if (!(x instanceof Error)) {
     return false;
   }
@@ -71,6 +44,27 @@ export const isLimiterError = (x: unknown): boolean => {
   return true
 }
 
+export const Limiter = <ErrorCodes extends StringRecord>(
+  codes: ErrorCodes,
+): LimiterErrorClass<ErrorCodes> => {
+  return class Base extends Error {
+    constructor(public readonly code: keyof ErrorCodes, public readonly details: PlainPrimitivesObject = {}) {
+      super(details && Object.keys(details).length ? Object.entries(details).map(([key, value]) => `${key} - ${value}`).join(', ') : undefined);
+      this.name = codes[code];
+    }
+
+    public static is = (target: unknown, code?: keyof ErrorCodes): target is LimiterInstance<ErrorCodes> => {
+      if (!isLimiterError(target)) {
+        return false
+      }
+      if (!code) {
+          return Object.keys(codes).includes(target.code)
+      }
+      return target.code === code && target.name === codes[code]
+    }
+  };
+};
+
 export const enrichDetails = {
   withSource: (source?: string, strategy: 'skip empty source' | 'turn empty source to "unknown source"' = 'skip empty source') => (details?: PlainPrimitivesObject): PlainPrimitivesObject => {
     if (!source) {
@@ -92,5 +86,37 @@ export const enrichDetails = {
     }
 
     return { ...details, timestamp }
+  },
+  fromUnknownData: (source: unknown) => (details?: PlainPrimitivesObject): PlainPrimitivesObject => {
+    let detailsPart = details || {}
+    if (typeof source === 'number' || typeof source === 'string' || typeof source === 'boolean') {
+      return { ...detailsPart, additionalInfo: source }
+    }
+    if (typeof source === 'object') {
+      if (isLimiterError(source)) {
+        return { ...detailsPart, ...source.details }
+      }
+      if (source instanceof Error) {
+        return { ...detailsPart, errorMessage: source.message, errorName: source.name, errorStack: source.stack }
+      }
+      for (const sourceEntry of Object.entries(source)) {
+        const [key, value] = sourceEntry
+        if (typeof value === 'number' || typeof value === 'boolean' || typeof value === 'string') {
+          detailsPart = { ...detailsPart, [key]: value }
+        }
+        if (typeof value === 'object' && value && !isLimiterError(value)) {
+          detailsPart = { ...detailsPart, [key]: JSON.stringify(
+            value instanceof Error 
+              ? { name: value.name, message: value.message, stack: value.stack } 
+              : value
+            ) 
+          }
+        }
+        if (isLimiterError(value)) {
+          detailsPart = { ...detailsPart, ...value.details }
+        }
+      }
+      return detailsPart
+    }
   }
 }
