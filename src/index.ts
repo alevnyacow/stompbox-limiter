@@ -1,26 +1,36 @@
 type StringRecord = Record<string, string>;
 type PlainPrimitivesObject = Record<string, string | number | boolean>;
 
-type LimiterInstance<ErrorCodes extends StringRecord> = Error & {
+export type LimiterError<ErrorCodes extends StringRecord = {}> = 
+  {} extends ErrorCodes 
+  ? LimiterErrorWithUnknownCodes 
+  : LimiterErrorWithStrictCodes<ErrorCodes>
+
+type LimiterErrorWithUnknownCodes = Error & {
+  code: string;
+  details: PlainPrimitivesObject
+}
+
+type LimiterErrorWithStrictCodes<ErrorCodes extends StringRecord> = Error & {
   code: keyof ErrorCodes;
-  details?: PlainPrimitivesObject;
+  details: PlainPrimitivesObject;
 };
 
 type LimiterErrorStatic<ErrorCodes extends StringRecord> = {
   is(
     target: unknown,
     code?: keyof ErrorCodes
-  ): target is LimiterInstance<ErrorCodes>;
+  ): target is LimiterError<ErrorCodes>;
 };
 
 type LimiterErrorClass<ErrorCodes extends StringRecord> =
   (new (
     code: keyof ErrorCodes,
     details?: PlainPrimitivesObject
-  ) => LimiterInstance<ErrorCodes>)
+  ) => LimiterErrorWithStrictCodes<ErrorCodes>)
   & LimiterErrorStatic<ErrorCodes>;
 
-export const isLimiterError = (x: unknown): x is LimiterInstance<{}> => {
+export const isLimiterError = (x: unknown): x is LimiterErrorWithUnknownCodes => {
   if (!(x instanceof Error)) {
     return false;
   }
@@ -53,7 +63,7 @@ export const Limiter = <ErrorCodes extends StringRecord>(
       this.name = codes[code];
     }
 
-    public static is = (target: unknown, code?: keyof ErrorCodes): target is LimiterInstance<ErrorCodes> => {
+    public static is = (target: unknown, code?: keyof ErrorCodes): target is LimiterError<ErrorCodes> => {
       if (!isLimiterError(target)) {
         return false
       }
