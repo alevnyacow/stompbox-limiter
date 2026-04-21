@@ -8,5 +8,6 @@ test('is Limiter error', () => {
     class TestLimiterError extends Limiter({ test1: 'LIMITER_TEST_1' }) {}
 
     const limiterError = new TestLimiterError('test1')
+    expect(limiterError instanceof Error).toBe(true)
     expect(isLimiterError(limiterError)).toBe(true)
 })
