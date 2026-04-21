@@ -1,3 +1,10 @@
+## [4.8.2](https://github.com/alevnyacow/stompbox-limiter/compare/v4.8.1...v4.8.2) (2026-04-21)
+
+
+### Bug Fixes
+
+* added `instanceof Error` check for limiter instance in test case ([f6c8427](https://github.com/alevnyacow/stompbox-limiter/commit/f6c84270717110e120cea4d5df555b74773eafca))
+
 ## [4.8.1](https://github.com/alevnyacow/stompbox-limiter/compare/v4.8.0...v4.8.1) (2026-04-20)
 
 
