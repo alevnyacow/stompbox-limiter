@@ -1,3 +1,10 @@
+# [4.9.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.8.2...v4.9.0) (2026-05-04)
+
+
+### Features
+
+* common details, responseStatusCode ([17949f9](https://github.com/alevnyacow/stompbox-limiter/commit/17949f9fc5a641b2910cca7c8d6a87d1ae12501e))
+
 ## [4.8.2](https://github.com/alevnyacow/stompbox-limiter/compare/v4.8.1...v4.8.2) (2026-04-21)
 
 
