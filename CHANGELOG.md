@@ -1,3 +1,10 @@
+# [4.10.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.9.0...v4.10.0) (2026-05-04)
+
+
+### Features
+
+* added default details ([aa7e6aa](https://github.com/alevnyacow/stompbox-limiter/commit/aa7e6aaa75550228a26b2e63bd06e276dc576b02))
+
 # [4.9.0](https://github.com/alevnyacow/stompbox-limiter/compare/v4.8.2...v4.9.0) (2026-05-04)
 
 
