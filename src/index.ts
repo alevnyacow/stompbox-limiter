@@ -88,6 +88,12 @@ export const enrichDetails = {
 
     return { source, ...details }
   },
+  withResponseStatusCode: (responseStatusCode: number) => (options?: PlainPrimitivesObject): PlainPrimitivesObject => {
+    return {
+      ...(options || {}),
+      responseStatusCode
+    }
+  },
   withTimespamp: (details?: PlainPrimitivesObject): PlainPrimitivesObject => {
     const timestamp = Date.now()
 
@@ -131,5 +137,19 @@ export const enrichDetails = {
       }
     }
     return detailsPart
+  }
+}
+
+export const commonDetails = (data: unknown): { responseStatusCode?: number, source?: string } => {
+  if (!isLimiterError(data)) {
+    return {}
+  }
+
+  const responseStatusCode = data.details.responseStatusCode
+  const source = data.details.source
+
+  return {
+    responseStatusCode: typeof responseStatusCode === 'number' ? responseStatusCode : undefined,
+    source: typeof source === 'string' ? source : undefined
   }
 }
